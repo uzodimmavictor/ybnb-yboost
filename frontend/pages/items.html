@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Maison - Luxury Rentals</title>
+    <link rel="stylesheet" href="../assets/css/items.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <span class="logo-icon">⌂</span>
+                <a href="#" class="logo">La Maison</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a class="active" href="#">Rentals</a></li>
+                    <li><a href="#">Properties</a></li>
+                    <li><a href="#">Agents</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button outline">Find A Rental</button>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find A <em>Rental</em><br>That Suits You</h1>
+                <p>Want to find a premium rental? We are ready to help you find one that suits your lifestyle and needs with our curated selection of properties.</p>
+                <button class="cta-button dark">Get Started</button>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>800 <span>+</span></h3>
+                        <p>Available Rentals</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>3200 <span>+</span></h3>
+                        <p>Happy Tenants</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50 <span>+</span></h3>
+                        <p>Premium Locations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/500/600" alt="Modern luxury apartment building">
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <h2>Search for available rentals</h2>
+                <div class="search-inputs">
+                    <div class="input-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="Where do you want to live?">
+                    </div>
+                    <div class="input-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type">
+                            <option value="">All Types</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                            <option value="penthouse">Penthouse</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="budget">Monthly Budget</label>
+                        <select id="budget">
+                            <option value="">Any Price</option>
+                            <option value="1000">Up to ₦100,000</option>
+                            <option value="2000">Up to ₦200,000</option>
+                            <option value="5000">Up to ₦500,000</option>
+                            <option value="10000">₦500,000+</option>
+                        </select>
+                    </div>
+                    <button class="search-button">Search Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-rentals">
+            <div class="section-header">
+                <div class="title-line">
+                    <span class="line"></span>
+                    <h2>FEATURED</h2>
+                </div>
+                <h3>Our Premium Rentals</h3>
+                <a href="#" class="view-all">Explore All <span>→</span></a>
+            </div>
+            
+            <div class="rental-grid">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <img src="/api/placeholder/400/250" alt="Luxury apartment in Victoria Island">
+                        <span class="rental-tag">Premium</span>
+                    </div>
+                    <div class="rental-details">
+                        <div class="location">
+                            <span class="location-icon">📍</span>
+                            <p>Victoria Island, Lagos</p>
+                        </div>
+                        <h4>Azure Heights Apartment</h4>
+                        <div class="rental-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <p>3 Bed</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <p>15x10 m</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📐</span>
+                                <p>1600 m²</p>
+                            </div>
+                        </div>
+                        <div class="rental-footer">
+                            <button class="book-now">Book Now</button>
+                            <p class="price">₦450,000<span>/month</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <img src="/api/placeholder/400/250" alt="Modern townhouse in Lekki">
+                        <span class="rental-tag">Featured</span>
+                    </div>
+                    <div class="rental-details">
+                        <div class="location">
+                            <span class="location-icon">📍</span>
+                            <p>Lekki Phase 1, Lagos</p>
+                        </div>
+                        <h4>Sapphire Bay Townhouse</h4>
+                        <div class="rental-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <p>4 Bed</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <p>12x18 m</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📐</span>
+                                <p>2100 m²</p>
+                            </div>
+                        </div>
+                        <div class="rental-footer">
+                            <button class="book-now">Book Now</button>
+                            <p class="price">₦650,000<span>/month</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <img src="/api/placeholder/400/250" alt="Luxury penthouse in Ikoyi">
+                        <span class="rental-tag">Exclusive</span>
+                    </div>
+                    <div class="rental-details">
+                        <div class="location">
+                            <span class="location-icon">📍</span>
+                            <p>Ikoyi, Lagos</p>
+                        </div>
+                        <h4>Diamond Crest Penthouse</h4>
+                        <div class="rental-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <p>5 Bed</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <p>20x15 m</p>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📐</span>
+                                <p>3200 m²</p>
+                            </div>
+                        </div>
+                        <div class="rental-footer">
+                            <button class="book-now">Book Now</button>
+                            <p class="price">₦1,200,000<span>/month</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonial">
+            <div class="testimonial-content">
+                <img src="/api/placeholder/80/80" alt="Client portrait" class="testimonial-image">
+                <h3>Sarah Johnson</h3>
+                <p class="client-title">Tenant since 2023</p>
+                <div class="quote">
+                    <span class="quote-mark">"</span>
+                    <p>Finding my dream rental through La Maison was effortless. Their personalized approach matched me with the perfect apartment that fits both my lifestyle and budget. The entire process was smooth from viewing to signing the lease.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="partners">
+            <h3>Our Trusted Partners</h3>
+            <div class="partner-logos">
+                <div class="partner">EQUINIX</div>
+                <div class="partner">DIGITAL REALTY</div>
+                <div class="partner">EQUINIX</div>
+                <div class="partner">DIGITAL REALTY</div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-icon">⌂</span>
+                <h3>La Maison</h3>
+                <p>Your premium rental solution since 2010</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><a href="#">Apartments</a></li>
+                        <li><a href="#">Houses</a></li>
+                        <li><a href="#">Villas</a></li>
+                        <li><a href="#">Penthouses</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 La Maison. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
