@@ -11,16 +11,13 @@ body {
     color: #333;
     line-height: 1.6;
     font-family: 'Inter', sans-serif;
-    padding: 30px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Header Styles */
@@ -28,7 +25,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0;
+    padding: 25px 20px;
 }
 
 .logo-container {
@@ -93,6 +90,7 @@ nav ul li a:hover {
 .cta-button.dark {
     background-color: #0c2340;
     color: white;
+    border: none;
 }
 
 .cta-button.outline {
@@ -257,4 +255,79 @@ nav ul li a:hover {
     height: 400px;
     object-fit: cover;
     display: block;
+}
+
+/* Footer - Added from items.css */
+footer {
+    background-color: #0c2340;
+    color: white;
+    padding: 60px 0 30px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    flex: 1;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    color: #ccc;
+    max-width: 300px;
+}
+
+.footer-links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-group h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.link-group ul {
+    list-style: none;
+}
+
+.link-group ul li {
+    margin-bottom: 12px;
+}
+
+.link-group ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.link-group ul li a:hover {
+    color: white;
+}
+
+.copyright {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
 }
