@@ -4,9 +4,8 @@ const controllers = require("../controllers/house");
 const path = require('path');
 
 // Define routes 
-router.get('/houses', controllers.getCars);
-router.get('/house/:id', controllers.getCarById);
-router.post('/house/updateStock', controllers.updateStock);
+router.get('/api/houses', controllers.getHouses);
+router.get('/api/house/:id', controllers.getHouseById);
 
 // Serve images from the img directory
 router.get('/img/:imageName', (req, res) => {

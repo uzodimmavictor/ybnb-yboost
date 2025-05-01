@@ -1,0 +1,67 @@
+{
+    "houses": [
+        {
+            "id": 1,
+            "name": "Modern Garden Apartment",
+            "location": "Victoria Island, Lagos",
+            "description": "Beautiful modern apartment with garden view and full amenities",
+            "price": 450000,
+            "type": "apartment",
+            "images": {
+                "exterior": [
+                    "appartement1_extérieur.png",
+                    "appartement1_extérieur2.png"
+                ],
+                "livingRoom": [
+                    "appartement1_salon.png"
+                ],
+                "bedrooms": [
+                    "appartement_1_chambre1.png",
+                    "appartement_1_chambre2.png"
+                ],
+                "kitchen": [
+                    "appartement_1_cuisine.png",
+                    "appartement1_cuisine2.png"
+                ],
+                "bathrooms": [
+                    "appartement1_salledebains1.png",
+                    "appartement1_salledebains2.png"
+                ]
+            },
+            "tag": "Premium",
+            "isAvailable": true,
+            "rating": 4.8
+        },
+        {
+            "id": 2,
+            "name": "Luxury Family Apartment",
+            "location": "Lekki Phase 1, Lagos",
+            "description": "Spacious family apartment with modern amenities and stunning views",
+            "price": 650000,
+            "type": "apartment",
+            "images": {
+                "exterior": [
+                    "appartement2_extérieur1.png",
+                    "appartement2_extérieur2.png"
+                ],
+                "livingRoom": [
+                    "appartement2_salon1.png",
+                    "appartement2_salon2.png",
+                    "appartement2_salon3.png"
+                ],
+                "bedrooms": [
+                    "appartement2_chambre1.png",
+                    "appartement2_chambre2.png",
+                    "appartement2_chambre3.png"
+                ],
+                "bathrooms": [
+                    "appartement2_salledebains1.png",
+                    "appartement2_salledebains2.png"
+                ]
+            },
+            "tag": "Luxury",
+            "isAvailable": true,
+            "rating": 4.9
+        }
+    ]
+}
