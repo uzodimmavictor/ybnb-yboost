@@ -13,6 +13,24 @@ app.use((req, res, next) => {
     next();
 });
 
+// Add proper MIME types
+app.use(express.static('public', {
+    setHeaders: (res, path, stat) => {
+        if (path.endsWith('.css')) {
+            res.set('Content-Type', 'text/css');
+        }
+    }
+}));
+
+// Serve frontend assets
+app.use('/frontend', express.static(path.join(__dirname, '../frontend'), {
+    setHeaders: (res, path, stat) => {
+        if (path.endsWith('.css')) {
+            res.set('Content-Type', 'text/css');
+        }
+    }
+}));
+
 const housesRoutes = require('./routes/houses');
 
 // Serve images from the backend/img directory

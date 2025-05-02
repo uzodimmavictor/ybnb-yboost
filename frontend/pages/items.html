@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Maison - Luxury Rentals</title>
     <link rel="stylesheet" href="../assets/css/items.css">
+    <link rel="stylesheet" href="../assets/css/calendar.css">
+    <link rel="stylesheet" href="../assets/css/booking-panel.css">
+    <link rel="stylesheet" href="../assets/css/carousel.css">
+    <link rel="stylesheet" href="../assets/css/payment-panel.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -121,6 +125,156 @@
         </section>
     </div>
 
+    <div class="overlay"></div>
+    <div class="booking-panel">
+        <div class="booking-header">
+            <button class="close-panel">×</button>
+            <h2 class="property-name"></h2>
+            <div class="booking-price"></div>
+        </div>
+        <div class="booking-content">
+            <div class="calendar-section">
+                <h3>Select dates</h3>
+                <div class="calendar-container">
+                    <div class="calendar" id="calendar-1"></div>
+                    <div class="calendar" id="calendar-2"></div>
+                </div>
+                <div class="booking-dates"></div>
+            </div>
+            
+            <div class="guests-section">
+                <h3>Guests</h3>
+                <div class="guest-types">
+                    <div class="guest-type">
+                        <div class="guest-info">
+                            <h4>Adults</h4>
+                            <p>Ages 13 or above</p>
+                        </div>
+                        <div class="counter">
+                            <button class="counter-btn minus" data-type="adults">-</button>
+                            <span class="count">1</span>
+                            <button class="counter-btn plus" data-type="adults">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="guest-type">
+                        <div class="guest-info">
+                            <h4>Children</h4>
+                            <p>Ages 2-12</p>
+                        </div>
+                        <div class="counter">
+                            <button class="counter-btn minus" data-type="children">-</button>
+                            <span class="count">0</span>
+                            <button class="counter-btn plus" data-type="children">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="guest-type">
+                        <div class="guest-info">
+                            <h4>Infants</h4>
+                            <p>Under 2</p>
+                        </div>
+                        <div class="counter">
+                            <button class="counter-btn minus" data-type="infants">-</button>
+                            <span class="count">0</span>
+                            <button class="counter-btn plus" data-type="infants">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="guest-type">
+                        <div class="guest-info">
+                            <h4>Pets</h4>
+                            <p>Service animals always welcome</p>
+                        </div>
+                        <div class="counter">
+                            <button class="counter-btn minus" data-type="pets">-</button>
+                            <span class="count">0</span>
+                            <button class="counter-btn plus" data-type="pets">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-summary">
+                <div class="price-details">
+                    <div class="price-row">
+                        <span>€<span class="daily-rate"></span> × <span class="nights-count"></span> nights</span>
+                        <span class="subtotal"></span>
+                    </div>
+                    <div class="price-row">
+                        <span>Service fee</span>
+                        <span class="service-fee"></span>
+                    </div>
+                    <div class="price-row total">
+                        <span>Total</span>
+                        <span class="total-price"></span>
+                    </div>
+                </div>
+                <button class="reserve-btn">Reserve</button>
+            </div>
+        </div>
+    </div>
+    <div class="payment-panel">
+        <div class="payment-header">
+            <button class="close-payment">×</button>
+            <h2>Complete your booking</h2>
+        </div>
+        <div class="payment-content">
+            <div class="booking-summary-section">
+                <h3>Booking Summary</h3>
+                <div class="summary-details"></div>
+            </div>
+            <div class="payment-methods">
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="card" checked>
+                        <span class="option-content">
+                            <i class="payment-icon">💳</i>
+                            <span>Credit/Debit Card</span>
+                        </span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="paypal">
+                        <span class="option-content">
+                            <i class="payment-icon">🅿️</i>
+                            <span>PayPal</span>
+                        </span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="bank">
+                        <span class="option-content">
+                            <i class="payment-icon">🏦</i>
+                            <span>Bank Transfer</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="payment-forms">
+                    <form class="card-form payment-form active">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="text" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Name on Card</label>
+                            <input type="text" placeholder="John Doe">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <button class="confirm-payment">Confirm and Pay</button>
+        </div>
+    </div>
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -162,8 +316,10 @@
             <p>© 2025 La Maison. All rights reserved.</p>
         </div>
     </footer>
-    <link rel="stylesheet" href="../assets/css/carousel.css">
     <script src="../js/carousel.js"></script>
+    <script src="../js/calendar.js"></script>
+    <script src="../js/booking-panel.js"></script>
+    <script src="../js/payment-panel.js"></script>
     <script src="../js/fetchHouses.js"></script>
 </body>
 </html>

@@ -107,8 +107,12 @@ function displayError(message) {
 }
 
 function bookHouse(id) {
-    // TODO: Implement booking functionality
-    console.log(`Booking house with ID: ${id}`);
+    const house = houses.find(h => h.id === id);
+    if (house && window.bookingPanel) {
+        window.bookingPanel.open(house);
+    } else {
+        console.error('House not found or booking panel not initialized');
+    }
 }
 
 // Load houses when the page loads

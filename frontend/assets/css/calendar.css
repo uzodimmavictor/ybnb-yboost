@@ -1,0 +1,239 @@
+.calendar-section {
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+}
+
+.calendar-container {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.calendar {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header button {
+    border: none;
+    background: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.calendar-header button:hover {
+    background: #f5f5f5;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+.calendar-weekday {
+    font-weight: 600;
+    color: #666;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.calendar-day:not(.empty):not(.disabled):hover {
+    background: #f0f0f0;
+}
+
+.calendar-day.selected {
+    background: #0c2340;
+    color: white;
+}
+
+.calendar-day.today {
+    border: 2px solid #0c2340;
+}
+
+.calendar-day.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.calendar-day .day {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.calendar-day .price {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.calendar-day.selected .price {
+    color: white;
+}
+
+.calendar-day .daily-price {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+    display: block;
+}
+
+.calendar-day.selected .daily-price {
+    color: white;
+}
+
+.calendar-day:hover:not(.disabled) .daily-price {
+    color: #222;
+}
+
+.calendar-day.check-in,
+.calendar-day.check-out {
+    background: #0c2340;
+    color: white;
+    position: relative;
+}
+
+.calendar-day.check-in {
+    border-radius: 50% 0 0 50%;
+}
+
+.calendar-day.check-out {
+    border-radius: 0 50% 50% 0;
+}
+
+.calendar-day.in-range {
+    background: rgba(12, 35, 64, 0.1);
+    border-radius: 0;
+}
+
+.date-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    white-space: nowrap;
+    color: #0c2340;
+    font-weight: 500;
+}
+
+.calendar-day.check-in .daily-price,
+.calendar-day.check-out .daily-price {
+    color: white;
+}
+
+.calendar-title {
+    text-align: center;
+}
+
+.calendar-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.month-selector {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    z-index: 10;
+    display: none;
+}
+
+.month-selector.active {
+    display: grid;
+}
+
+.month-option {
+    padding: 8px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.month-option:hover {
+    background: #f7f7f7;
+}
+
+.month-option.selected {
+    background: #222;
+    color: white;
+}
+
+.selected-dates {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f8f8f8;
+    border-radius: 12px;
+}
+
+.dates-summary {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.date-range {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.stay-duration {
+    color: #666;
+    font-size: 14px;
+}
+
+.price-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.price-row.total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    font-weight: 600;
+    font-size: 16px;
+}
