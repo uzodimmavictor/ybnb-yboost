@@ -3,31 +3,28 @@ const fs = require('fs');
 const path = require('path');
 
 // Get all houses
-exports.getHouses = (_, res) => {
+exports.getHouses = (req, res) => {
     try {
-        if (!data.houses || !Array.isArray(data.houses)) {
-            return res.status(500)
-                .header('Content-Type', 'application/json')
-                .json({
-                    status: "error",
-                    message: "Invalid data structure"
-                });
+        console.log('Fetching all houses...');
+        
+        if (!data || !data.houses || !Array.isArray(data.houses)) {
+            console.error('Invalid data structure in data.json');
+            return res.status(500).json({
+                status: "error",
+                message: "Data structure error"
+            });
         }
 
-        return res.status(200)
-            .header('Content-Type', 'application/json')
-            .json({
-                status: "success",
-                data: data.houses
-            });
+        return res.status(200).json({
+            status: "success",
+            data: data.houses
+        });
     } catch (error) {
-        console.error("Error fetching houses:", error);
-        return res.status(500)
-            .header('Content-Type', 'application/json')
-            .json({
-                status: "error",
-                message: "Internal server error"
-            });
+        console.error('Error in getHouses:', error);
+        return res.status(500).json({
+            status: "error",
+            message: "Internal server error"
+        });
     }
 };
 

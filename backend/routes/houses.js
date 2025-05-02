@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const controllers = require("../controllers/house");
+const controllers = require('../controllers/house');
 const path = require('path');
 
-// Define routes 
-router.get('/api/houses', controllers.getHouses);
-router.get('/api/house/:id', controllers.getHouseById);
+// Remove /api prefix as it's now handled in app.js
+router.get('/houses', controllers.getHouses);
+router.get('/house/:id', controllers.getHouseById);
 
 // Serve images from the img directory
 router.get('/img/:imageName', (req, res) => {

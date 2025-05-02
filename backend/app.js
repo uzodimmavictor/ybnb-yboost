@@ -1,19 +1,26 @@
 const express = require('express');
+const path = require('path');
+const cors = require('cors');
 const app = express();
 const port = 8080;
 
-// Add body-parser middleware
 app.use(express.json());
+app.use(cors());
 
-const cors = require('cors');
-app.use(cors({
-    origin: "*"
-}))
+// Add request logging
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 
-const housesRoutes  = require('./routes/houses');
-app.use(housesRoutes);
+const housesRoutes = require('./routes/houses');
 
-//route
+// Serve images from the backend/img directory
+app.use('/img', express.static(path.join(__dirname, 'img')));
+
+// Use API routes
+app.use('/api', housesRoutes);
+
 app.listen(port, () => {
-    console.log(`Example app litening at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });

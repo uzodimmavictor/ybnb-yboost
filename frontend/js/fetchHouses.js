@@ -1,47 +1,63 @@
+let houses = [];
+
 async function fetchHouses() {
     try {
-        const response = await fetch('http://localhost:8080/api/houses', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-
-        // Log response headers for debugging
-        console.log('Response headers:', response.headers);
+        const response = await fetch('http://localhost:8080/api/houses');
         
-        const text = await response.text();
-        console.log('Raw response:', text);
-
-        let result;
-        try {
-            result = JSON.parse(text);
-        } catch (e) {
-            throw new Error('Invalid JSON response from server');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-
+        
+        const result = await response.json();
+        
         if (result.status === "success" && Array.isArray(result.data)) {
+            houses = result.data;
             displayHouses(result.data);
         } else {
-            throw new Error(result.message || 'Invalid data structure received from server');
+            throw new Error('Invalid data format received from server');
         }
     } catch (error) {
-        console.error('Error:', error);
-        displayError(`Failed to load houses: ${error.message}`);
+        console.error('Error fetching houses:', error);
+        displayError(`Failed to load properties: ${error.message}`);
     }
 }
 
 function displayHouses(houses) {
     const rentalGrid = document.querySelector('.rental-grid');
-    rentalGrid.innerHTML = ''; // Clear existing content
+    rentalGrid.innerHTML = '';
 
     houses.forEach(house => {
+        // Combine all available images
+        const allImages = [
+            ...(house.images.exterior || []),
+            ...(house.images.livingRoom || []),
+            ...(house.images.bedrooms || []),
+            ...(house.images.kitchen || []),
+            ...(house.images.bathrooms || [])
+        ].filter(img => img);  // Remove any undefined/null values
+
+        const carouselSlides = allImages.map(img => 
+            `<img src="http://localhost:8080/img/${img}" 
+                 alt="${house.name}" 
+                 class="carousel-slide"
+                 onerror="this.src='http://localhost:8080/img/default-apartment.jpg'">`
+        ).join('');
+
+        const carouselDots = allImages.map((_, index) => 
+            `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>`
+        ).join('');
+
         const houseCard = `
             <div class="rental-card">
-                <div class="rental-image">
-                    <img src="http://localhost:8080/img/${house.images.exterior[0]}" alt="${house.name}">
-                    <span class="rental-tag">${house.tag}</span>
+                <div class="carousel">
+                    <button class="carousel-prev">❮</button>
+                    <button class="carousel-next">❯</button>
+                    <div class="carousel-container">
+                        ${carouselSlides}
+                    </div>
+                    <div class="carousel-dots">
+                        ${carouselDots}
+                    </div>
                 </div>
                 <div class="rental-details">
                     <div class="location">
@@ -52,22 +68,33 @@ function displayHouses(houses) {
                     <div class="rental-features">
                         <div class="feature">
                             <span class="feature-icon">⭐</span>
-                            <p>${house.rating}</p>
+                            <p>${house.rating || 'New'}</p>
                         </div>
                         <div class="feature">
                             <span class="feature-icon">🏠</span>
-                            <p>${house.type}</p>
+                            <p>${house.type || 'Property'}</p>
                         </div>
                     </div>
                     <div class="rental-footer">
                         <button class="book-now" onclick="bookHouse(${house.id})">Book Now</button>
-                        <p class="price">₦${house.price.toLocaleString()}<span>/month</span></p>
+                        <p class="price">€${house.price.toLocaleString()}<span>/month</span></p>
                     </div>
                 </div>
             </div>
         `;
         rentalGrid.innerHTML += houseCard;
     });
+
+    // Initialize carousels after DOM is updated
+    setTimeout(() => {
+        document.querySelectorAll('.carousel').forEach(carouselElement => {
+            try {
+                new Carousel(carouselElement);
+            } catch (error) {
+                console.error('Error initializing carousel:', error);
+            }
+        });
+    }, 0);
 }
 
 function displayError(message) {

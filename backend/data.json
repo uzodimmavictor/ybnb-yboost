@@ -2,19 +2,17 @@
     "houses": [
         {
             "id": 1,
-            "name": "Modern Garden Apartment",
-            "location": "Victoria Island, Lagos",
-            "description": "Beautiful modern apartment with garden view and full amenities",
-            "price": 450000,
+            "name": "Elegant Parisian Apartment",
+            "location": "Le Marais, Paris",
+            "description": "Charming apartment with authentic Parisian architecture and modern amenities",
+            "price": 3200,
             "type": "apartment",
             "images": {
                 "exterior": [
                     "appartement1_extérieur.png",
                     "appartement1_extérieur2.png"
                 ],
-                "livingRoom": [
-                    "appartement1_salon.png"
-                ],
+                "livingRoom": ["appartement1_salon.png"],
                 "bedrooms": [
                     "appartement_1_chambre1.png",
                     "appartement_1_chambre2.png"
@@ -30,14 +28,15 @@
             },
             "tag": "Premium",
             "isAvailable": true,
-            "rating": 4.8
+            "rating": 4.8,
+            "amenities": ["Metro Access", "Balcony", "Heating", "Washer"]
         },
         {
             "id": 2,
-            "name": "Luxury Family Apartment",
-            "location": "Lekki Phase 1, Lagos",
-            "description": "Spacious family apartment with modern amenities and stunning views",
-            "price": 650000,
+            "name": "Modern Barcelona Loft",
+            "location": "Gothic Quarter, Barcelona",
+            "description": "Contemporary loft with Mediterranean charm and stunning city views",
+            "price": 2800,
             "type": "apartment",
             "images": {
                 "exterior": [
@@ -61,7 +60,98 @@
             },
             "tag": "Luxury",
             "isAvailable": true,
-            "rating": 4.9
+            "rating": 4.9,
+            "amenities": ["Air Conditioning", "Rooftop Terrace", "WiFi", "Elevator"]
+        },
+        {
+            "id": 3,
+            "name": "Riverside Amsterdam Suite",
+            "location": "Canal Ring, Amsterdam",
+            "description": "Historic canal house with modern interior and water views",
+            "price": 3500,
+            "type": "apartment",
+            "images": {
+                "exterior": [
+                    "appartement_3_extérieur.png",
+                    "appartement_3_extérieur_2.avif",
+                    "appartement_3_extérieur_3.png"
+                ],
+                "bedrooms": [
+                    "appartement_3_chambre_1.png",
+                    "appartement_3_chambre_2.png"
+                ],
+                "bathrooms": [
+                    "appartement_3_sallesdebain_1.png",
+                    "appartement_3_sallesdebain_2.png"
+                ]
+            },
+            "tag": "Premium Plus",
+            "isAvailable": true,
+            "rating": 4.9,
+            "amenities": ["Canal View", "Bike Storage", "Smart Home", "Garden"]
+        },
+        {
+            "id": 4,
+            "name": "Milan Design Apartment",
+            "location": "Brera District, Milan",
+            "description": "Fashion district apartment with designer furniture and luxury finishes",
+            "price": 4200,
+            "type": "penthouse",
+            "images": {
+                "livingRoom": [
+                    "appartement_4_salon_1.png",
+                    "appartement_4_salon_2.png",
+                    "appartement_4_salon_3.png",
+                    "appartement_4_salon_4.png"
+                ],
+                "bedrooms": [
+                    "appartement_4_chambre_1.png",
+                    "appartement_4_chambre_2.png"
+                ],
+                "kitchen": ["appartement_4_cuisine_1.png"],
+                "bathrooms": [
+                    "appartement_4_sallesdebain_1.png",
+                    "appartement_4_sallesdebain_2.png"
+                ]
+            },
+            "tag": "Luxury Plus",
+            "isAvailable": true,
+            "rating": 5.0,
+            "amenities": ["Designer Furniture", "Concierge", "Spa Access", "Wine Cellar"]
+        },
+        {
+            "id": 5,
+            "name": "Berlin Artistic Loft",
+            "location": "Prenzlauer Berg, Berlin",
+            "description": "Industrial-chic loft in Berlin's creative district",
+            "price": 2600,
+            "type": "loft",
+            "images": {
+                "exterior": [
+                    "appartement_5_extérieur_1.png",
+                    "appartement_5_extérieur_2.png",
+                    "appartement_5_extérieur_3.png"
+                ],
+                "livingRoom": [
+                    "appartement_5_salon_1.png",
+                    "appartement_5_salon_2.png",
+                    "appartement_5_salon_3.png"
+                ],
+                "bedrooms": [
+                    "appartement_5_chambre_1.png",
+                    "appartement_5_chambre2_.png",
+                    "appartement_5_chambre3_.png"
+                ],
+                "kitchen": ["appartement_5_cuisine_1.png"],
+                "bathrooms": [
+                    "appartement_5_sallesdebain_1.png",
+                    "appartement_5_sallesdebain_2.png"
+                ]
+            },
+            "tag": "Artist's Choice",
+            "isAvailable": true,
+            "rating": 4.7,
+            "amenities": ["Art Studio Space", "High Ceilings", "Sound System", "Co-working Space"]
         }
     ]
 }
