@@ -1,0 +1,13 @@
+{
+    "reservations": [
+        {
+            "id": "1",
+            "houseId": "1",
+            "checkIn": "2024-03-01",
+            "checkOut": "2024-03-05",
+            "guests": 2,
+            "total": 500,
+            "status": "confirmed"
+        }
+    ]
+}

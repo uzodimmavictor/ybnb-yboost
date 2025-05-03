@@ -67,7 +67,43 @@
                 <img src="../assets/images/house5.jpg" alt="Luxury kitchen with dark cabinets and marble countertops">
             </div>
         </section>
+
+        <!-- Add Reservations Section -->
+        <section class="reservations-section">
+            <div class="container">
+                <h2>Your Reservations</h2>
+                <div id="reservations-container"></div>
+            </div>
+        </section>
     </div>
+
+    <!-- Add Scripts -->
+    <script src="../js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const reservations = await ReservationAPI.getAllReservations();
+                const container = document.getElementById('reservations-container');
+                
+                container.innerHTML = reservations.map(reservation => `
+                    <div class="reservation-card">
+                        <div class="reservation-header">
+                            <h3>Reservation #${reservation.id}</h3>
+                            <span class="reservation-status status-${reservation.status}">${reservation.status}</span>
+                        </div>
+                        <div class="reservation-details">
+                            <div>Check-in: ${new Date(reservation.checkIn).toLocaleDateString()}</div>
+                            <div>Check-out: ${new Date(reservation.checkOut).toLocaleDateString()}</div>
+                            <div>Guests: ${reservation.guests}</div>
+                            <div>Total: €${reservation.total}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load reservations:', error);
+            }
+        });
+    </script>
 
     <footer>
         <div class="footer-content">

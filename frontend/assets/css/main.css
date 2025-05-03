@@ -331,3 +331,41 @@ footer {
     font-size: 14px;
     color: #ccc;
 }
+
+/* Reservations Section */
+.reservations-section {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.reservation-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.reservation-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.reservation-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-confirmed {
+    background-color: #e3f7e9;
+    color: #0a6b2d;
+}
