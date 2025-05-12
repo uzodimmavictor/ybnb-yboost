@@ -133,11 +133,21 @@ class BookingPanel {
     initializeCalendars(property) {
         const dailyRate = Math.round(property.price / 30);
         
-        this.calendar = new Calendar(this.calendar1, {
+        // Reset dates when opening booking panel
+        this.selectedDates = {
+            checkIn: null,
+            checkOut: null
+        };
+        
+        // Create calendar with the proper references
+        window.calendar = new Calendar(this.calendar1, {
             dailyRate,
             onSelect: (dates) => this.handleDateSelection(dates),
-            selectedDate: this.selectedDates.checkIn
+            selectedDates: this.selectedDates
         });
+        
+        // Store a reference to the calendar instance
+        this.calendar = window.calendar;
 
         if (this.calendar2) {
             this.calendar2.style.display = 'none';
@@ -145,12 +155,35 @@ class BookingPanel {
     }
 
     handleDateSelection(dates) {
-        if (!dates.checkIn || !dates.checkOut) {
+        // Store the selected dates in the BookingPanel instance
+        if (dates && dates.checkIn) {
+            this.selectedDates.checkIn = new Date(dates.checkIn);
+        } else {
+            this.selectedDates.checkIn = null;
+        }
+        
+        if (dates && dates.checkOut) {
+            this.selectedDates.checkOut = new Date(dates.checkOut);
+        } else {
+            this.selectedDates.checkOut = null;
+        }
+
+        console.log("BookingPanel received dates:", this.selectedDates);
+
+        if (!this.selectedDates.checkIn || !this.selectedDates.checkOut) {
             this.updateTotals();
             return;
         }
 
-        const { totalPrice, nights, avgPrice } = dates.priceData;
+        // Calculate the night count
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const nightCount = Math.ceil(
+            (this.selectedDates.checkOut - this.selectedDates.checkIn) / msPerDay
+        );
+        
+        // Calculate the price per night based on property price
+        const dailyRate = this.currentProperty ? Math.round(this.currentProperty.price / 30) : 0;
+        const totalPrice = dailyRate * nightCount;
         const serviceFee = Math.round(totalPrice * 0.15);
         const finalTotal = totalPrice + serviceFee;
 
@@ -159,15 +192,15 @@ class BookingPanel {
         selectedDates.innerHTML = `
             <div class="dates-summary">
                 <div class="date-range">
-                    <strong>${this.formatDateFull(dates.checkIn)} - ${this.formatDateFull(dates.checkOut)}</strong>
+                    <strong>${this.formatDateFull(this.selectedDates.checkIn)} - ${this.formatDateFull(this.selectedDates.checkOut)}</strong>
                 </div>
                 <div class="stay-duration">
-                    <span>${nights} nights · Average €${avgPrice.toLocaleString()} per night</span>
+                    <span>${nightCount} nights · Average €${dailyRate.toLocaleString()} per night</span>
                 </div>
             </div>
             <div class="price-breakdown">
                 <div class="price-row">
-                    <span>Stay (${nights} nights)</span>
+                    <span>Stay (${nightCount} nights)</span>
                     <span>€${totalPrice.toLocaleString()}</span>
                 </div>
                 <div class="price-row">
@@ -187,8 +220,8 @@ class BookingPanel {
 
         // Update summary section
         this.updateSummaryTotals({
-            nights,
-            avgPrice,
+            nights: nightCount,
+            avgPrice: dailyRate,
             totalPrice,
             serviceFee,
             finalTotal
@@ -324,10 +357,18 @@ class BookingPanel {
             return;
         }
 
+        const totals = this.calculateTotals();
+        if (!totals) {
+            alert('Please select check-in and check-out dates');
+            return;
+        }
+
         const bookingDetails = {
+            property: this.currentProperty.name,
             dates: `${this.formatDate(this.selectedDates.checkIn)} - ${this.formatDate(this.selectedDates.checkOut)}`,
-            guests: Object.values(this.counts).reduce((sum, count) => sum + count, 0),
-            total: this.panel.querySelector('.total-price').textContent
+            guests: totals.totalGuests,
+            nights: totals.nights,
+            total: `€${totals.total.toLocaleString()}`
         };
 
         window.paymentPanel.open(bookingDetails);

@@ -1,0 +1,208 @@
+/* Enhanced Reservation Card Styling */
+.reservation-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.reservation-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card.cancelled {
+    opacity: 0.7;
+    background-color: #f8f8f8;
+}
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.reservation-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.reservation-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-confirmed {
+    background-color: #e3f7e8;
+    color: #1e8a3d;
+}
+
+.status-cancelled {
+    background-color: #feeced;
+    color: #d32f2f;
+}
+
+.reservation-content {
+    display: flex;
+    padding: 15px;
+}
+
+.house-preview {
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.house-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.house-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.reservation-info {
+    flex: 1;
+}
+
+.house-name {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.house-location {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.reservation-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+}
+
+.detail-label {
+    font-size: 13px;
+    color: #666;
+    margin-right: 5px;
+    min-width: 70px;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.price-item {
+    font-weight: 600;
+}
+
+.price-item .detail-value {
+    color: #1a73e8;
+    font-size: 16px;
+}
+
+.reservation-actions {
+    padding: 10px 15px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action-button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn {
+    background-color: #fff;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+}
+
+.cancel-btn:hover {
+    background-color: #feeced;
+}
+
+/* Highlight animation for new reservations */
+@keyframes highlight {
+    0% { background-color: #fff; }
+    20% { background-color: #e3f2fd; }
+    100% { background-color: #fff; }
+}
+
+.highlight-new {
+    animation: highlight 3s ease;
+    border: 1px solid #1a73e8;
+}
+
+/* Loading and message styles */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.no-reservations {
+    text-align: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #666;
+}
+
+.error-message {
+    padding: 15px;
+    color: #d32f2f;
+    background-color: #feeced;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .reservation-content {
+        flex-direction: column;
+    }
+    
+    .house-preview {
+        width: 100%;
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .reservation-details {
+        grid-template-columns: 1fr;
+    }
+}

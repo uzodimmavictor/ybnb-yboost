@@ -39,4 +39,28 @@ class ReservationAPI {
     }
 }
 
+class HouseAPI {
+    static async getAllHouses() {
+        try {
+            const response = await fetch(`${API_URL}/houses`);
+            const data = await response.json();
+            return data.data;
+        } catch (error) {
+            console.error('Error fetching houses:', error);
+            throw error;
+        }
+    }
+
+    static async getHouse(id) {
+        try {
+            const response = await fetch(`${API_URL}/house/${id}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching house:', error);
+            throw error;
+        }
+    }
+}
+
 window.ReservationAPI = ReservationAPI;
+window.HouseAPI = HouseAPI;

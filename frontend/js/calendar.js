@@ -41,7 +41,8 @@ class Calendar {
     }
 
     formatDate(date) {
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        if (!date) return '';
+        return new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
     renderCalendarBody(year, month) {
@@ -93,8 +94,10 @@ class Calendar {
         const today = new Date();
         const isPast = date < today;
         const isInRange = this.isInRange(date);
-        const isCheckIn = this.selectedDates.checkIn?.toDateString() === date.toDateString();
-        const isCheckOut = this.selectedDates.checkOut?.toDateString() === date.toDateString();
+        const isCheckIn = this.selectedDates.checkIn && 
+                          this.selectedDates.checkIn.toDateString() === date.toDateString();
+        const isCheckOut = this.selectedDates.checkOut && 
+                           this.selectedDates.checkOut.toDateString() === date.toDateString();
 
         let classes = ['calendar-day'];
         if (isDisabled) classes.push('disabled');
@@ -106,8 +109,7 @@ class Calendar {
         return `
             <div class="${classes.join(' ')}"
                  data-date="${date.toISOString()}"
-                 data-price="${dayPrice}"
-                 ${!isPast ? 'onclick="calendar.handleDateClick(this)"' : ''}>
+                 data-price="${dayPrice}">
                 <span class="day">${date.getDate()}</span>
                 ${!isPast ? `<span class="daily-price">€${dayPrice}</span>` : ''}
                 ${isCheckIn ? '<span class="date-label">Check-in</span>' : ''}
@@ -121,24 +123,57 @@ class Calendar {
         const price = parseInt(element.dataset.price);
         
         if (!this.selectedDates.checkIn || date < this.selectedDates.checkIn) {
+            // First click or new check-in date
             this.selectedDates = {
                 checkIn: date,
                 checkOut: null,
                 priceData: {
-                    [date.toISOString()]: price,
                     totalPrice: 0,
                     avgPrice: 0,
                     nights: 0
                 }
             };
+            // Store the price for this day
+            this.selectedDates.priceData[date.toISOString()] = price;
         } else if (!this.selectedDates.checkOut) {
+            // Second click - selecting checkout date
+            if (date.getTime() === this.selectedDates.checkIn.getTime()) {
+                // Don't allow same day for check-in and check-out
+                return;
+            }
+            
             this.selectedDates.checkOut = date;
+            // Store the price for this day
             this.selectedDates.priceData[date.toISOString()] = price;
             this.calculateDateRangePrices();
+        } else {
+            // Reset selection if already have check-in and check-out
+            this.selectedDates = {
+                checkIn: date,
+                checkOut: null,
+                priceData: {
+                    totalPrice: 0,
+                    avgPrice: 0,
+                    nights: 0
+                }
+            };
+            // Store the price for this day
+            this.selectedDates.priceData[date.toISOString()] = price;
         }
 
         this.render();
-        this.onSelect(this.selectedDates);
+        
+        // Create a clone of the dates object to prevent reference issues
+        const datesClone = {
+            checkIn: this.selectedDates.checkIn ? new Date(this.selectedDates.checkIn) : null,
+            checkOut: this.selectedDates.checkOut ? new Date(this.selectedDates.checkOut) : null,
+            priceData: {...this.selectedDates.priceData}
+        };
+        
+        // Pass the cloned object to the callback
+        if (typeof this.onSelect === 'function') {
+            this.onSelect(datesClone);
+        }
     }
 
     calculateDateRangePrices() {
@@ -146,12 +181,20 @@ class Calendar {
         let totalPrice = 0;
         let dayCount = 0;
         
+        if (!checkIn || !checkOut) return;
+        
         let currentDate = new Date(checkIn);
         while (currentDate <= checkOut) {
             const dateStr = currentDate.toISOString();
             const dayPrice = priceData[dateStr] || this.generateDailyPrice();
+            
+            // Store price for this day
+            priceData[dateStr] = dayPrice;
+            
             totalPrice += dayPrice;
             dayCount++;
+            
+            // Move to next day
             currentDate.setDate(currentDate.getDate() + 1);
         }
 
@@ -163,6 +206,14 @@ class Calendar {
     attachEvents() {
         this.element.querySelector('.prev-month').addEventListener('click', () => this.changeMonth(-1));
         this.element.querySelector('.next-month').addEventListener('click', () => this.changeMonth(1));
+        
+        // Add direct click handlers to calendar days
+        const calendarDays = this.element.querySelectorAll('.calendar-day:not(.empty):not(.disabled)');
+        calendarDays.forEach(day => {
+            day.addEventListener('click', (e) => {
+                this.handleDateClick(e.currentTarget);
+            });
+        });
     }
 
     changeMonth(delta) {
@@ -171,4 +222,5 @@ class Calendar {
     }
 }
 
-window.calendar = new Calendar(document.getElementById('calendar-1'));
+// Do not initialize window.calendar here - it will be initialized in BookingPanel class
+// window.calendar = new Calendar(document.getElementById('calendar-1'));
